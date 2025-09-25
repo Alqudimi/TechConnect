@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Services - Programmers Union{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Our Services</h1>
+        <p>Comprehensive software development solutions tailored to your business needs</p>
+    </div>
+</section>
+
+<section class="services-detailed">
+    <div class="container">
+        <div class="service-detail">
+            <div class="service-content">
+                <h2>Web Development</h2>
+                <p>Build powerful, scalable web applications with modern frameworks and technologies. We create responsive, user-friendly websites that drive engagement and conversion.</p>
+                <ul class="service-features">
+                    <li>Custom Web Applications</li>
+                    <li>E-commerce Solutions</li>
+                    <li>Content Management Systems</li>
+                    <li>Progressive Web Apps</li>
+                    <li>API Development & Integration</li>
+                </ul>
+                <div class="service-tech">
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Vue.js</span>
+                    <span class="tech-badge">Django</span>
+                    <span class="tech-badge">FastAPI</span>
+                    <span class="tech-badge">Node.js</span>
+                </div>
+            </div>
+            <div class="service-icon-large">
+                <i class="fas fa-globe"></i>
+            </div>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-icon-large">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="service-content">
+                <h2>Mobile App Development</h2>
+                <p>Create engaging mobile experiences for iOS and Android platforms. Our apps are built for performance, usability, and scalability.</p>
+                <ul class="service-features">
+                    <li>Native iOS & Android Apps</li>
+                    <li>Cross-platform Solutions</li>
+                    <li>UI/UX Design</li>
+                    <li>App Store Optimization</li>
+                    <li>Push Notifications & Analytics</li>
+                </ul>
+                <div class="service-tech">
+                    <span class="tech-badge">React Native</span>
+                    <span class="tech-badge">Flutter</span>
+                    <span class="tech-badge">Swift</span>
+                    <span class="tech-badge">Kotlin</span>
+                    <span class="tech-badge">Xamarin</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-content">
+                <h2>Cloud Solutions</h2>
+                <p>Deploy and scale your applications with robust cloud infrastructure. We help you leverage the power of cloud computing for optimal performance.</p>
+                <ul class="service-features">
+                    <li>Cloud Architecture Design</li>
+                    <li>Migration Services</li>
+                    <li>Serverless Solutions</li>
+                    <li>Database Management</li>
+                    <li>Security & Compliance</li>
+                </ul>
+                <div class="service-tech">
+                    <span class="tech-badge">AWS</span>
+                    <span class="tech-badge">Azure</span>
+                    <span class="tech-badge">Google Cloud</span>
+                    <span class="tech-badge">Docker</span>
+                    <span class="tech-badge">Kubernetes</span>
+                </div>
+            </div>
+            <div class="service-icon-large">
+                <i class="fas fa-cloud"></i>
+            </div>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-icon-large">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <div class="service-content">
+                <h2>DevOps & Automation</h2>
+                <p>Streamline your development workflow with automated CI/CD pipelines, monitoring, and deployment strategies that reduce time-to-market.</p>
+                <ul class="service-features">
+                    <li>Continuous Integration/Deployment</li>
+                    <li>Infrastructure as Code</li>
+                    <li>Monitoring & Logging</li>
+                    <li>Performance Optimization</li>
+                    <li>Security Automation</li>
+                </ul>
+                <div class="service-tech">
+                    <span class="tech-badge">Jenkins</span>
+                    <span class="tech-badge">GitLab CI</span>
+                    <span class="tech-badge">Terraform</span>
+                    <span class="tech-badge">Ansible</span>
+                    <span class="tech-badge">Prometheus</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing-section">
+    <div class="container">
+        <h2 class="section-title">Flexible Pricing Options</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$2,500</div>
+                <p>Perfect for small projects and startups</p>
+                <ul>
+                    <li>Basic web application</li>
+                    <li>Responsive design</li>
+                    <li>3 months support</li>
+                    <li>Basic SEO optimization</li>
+                </ul>
+                <a href="/contact" class="btn btn-outline">Get Started</a>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Professional</h3>
+                <div class="price">$7,500</div>
+                <p>Ideal for growing businesses</p>
+                <ul>
+                    <li>Advanced web application</li>
+                    <li>Custom features</li>
+                    <li>6 months support</li>
+                    <li>Advanced integrations</li>
+                    <li>Performance optimization</li>
+                </ul>
+                <a href="/contact" class="btn btn-primary">Most Popular</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">Custom</div>
+                <p>For large-scale applications</p>
+                <ul>
+                    <li>Complex enterprise solutions</li>
+                    <li>Scalable architecture</li>
+                    <li>12 months support</li>
+                    <li>Dedicated team</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="/contact" class="btn btn-outline">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

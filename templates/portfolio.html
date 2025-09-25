@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio - Programmers Union{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Our Portfolio</h1>
+        <p>Showcasing successful projects and innovative solutions we've delivered</p>
+    </div>
+</section>
+
+<section class="portfolio-section">
+    <div class="container">
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="web">Web Apps</button>
+            <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+            <button class="filter-btn" data-filter="cloud">Cloud Solutions</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="web">
+                <div class="portfolio-image">
+                    <div class="project-placeholder">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A comprehensive e-commerce solution with inventory management, payment processing, and analytics dashboard.</p>
+                    <div class="portfolio-tech">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="mobile">
+                <div class="portfolio-image">
+                    <div class="project-placeholder">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Health Monitoring App</h3>
+                    <p>Mobile application for tracking health metrics with real-time synchronization and doctor consultation features.</p>
+                    <div class="portfolio-tech">
+                        <span>React Native</span>
+                        <span>Firebase</span>
+                        <span>Node.js</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="cloud">
+                <div class="portfolio-image">
+                    <div class="project-placeholder">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Analytics Dashboard</h3>
+                    <p>Cloud-based analytics platform with real-time data processing and customizable reporting capabilities.</p>
+                    <div class="portfolio-tech">
+                        <span>Python</span>
+                        <span>AWS</span>
+                        <span>React</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="web">
+                <div class="portfolio-image">
+                    <div class="project-placeholder">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Learning Management System</h3>
+                    <p>Educational platform with course management, student tracking, and interactive learning modules.</p>
+                    <div class="portfolio-tech">
+                        <span>Django</span>
+                        <span>Vue.js</span>
+                        <span>PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="mobile">
+                <div class="portfolio-image">
+                    <div class="project-placeholder">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Food Delivery App</h3>
+                    <p>Cross-platform mobile app for food ordering with real-time tracking and payment integration.</p>
+                    <div class="portfolio-tech">
+                        <span>Flutter</span>
+                        <span>Firebase</span>
+                        <span>Stripe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="cloud">
+                <div class="portfolio-image">
+                    <div class="project-placeholder">
+                        <i class="fas fa-server"></i>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Microservices Architecture</h3>
+                    <p>Scalable microservices solution with containerization, load balancing, and automated deployment.</p>
+                    <div class="portfolio-tech">
+                        <span>Docker</span>
+                        <span>Kubernetes</span>
+                        <span>AWS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="container">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"Programmers Union delivered exceptional results. Their attention to detail and technical expertise exceeded our expectations."</p>
+                </div>
+                <div class="testimonial-author">
+                    <h4>Sarah Johnson</h4>
+                    <span>CEO, TechStart Inc.</span>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"The team's professionalism and ability to meet deadlines made our project a huge success. Highly recommended!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <h4>Michael Chen</h4>
+                    <span>CTO, InnovateLabs</span>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"Outstanding development quality and ongoing support. They truly understand business requirements."</p>
+                </div>
+                <div class="testimonial-author">
+                    <h4>Emily Rodriguez</h4>
+                    <span>Product Manager, GrowthCorp</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

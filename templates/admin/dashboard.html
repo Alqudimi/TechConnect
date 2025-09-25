@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Programmers Union</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <div class="admin-dashboard">
+        <header class="admin-header">
+            <div class="admin-nav">
+                <h1>Admin Dashboard</h1>
+                <div class="admin-actions">
+                    <a href="/" target="_blank" class="btn btn-outline">View Website</a>
+                    <a href="/admin" class="btn btn-secondary">Logout</a>
+                </div>
+            </div>
+        </header>
+        
+        <main class="admin-content">
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-envelope"></i>
+                    <div class="stat-info">
+                        <h3>{{ inquiries|length }}</h3>
+                        <p>Total Inquiries</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-section">
+                <h2>Contact Inquiries</h2>
+                <div class="inquiries-table">
+                    {% if inquiries %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for inquiry in inquiries %}
+                            <tr>
+                                <td>{{ inquiry.name }}</td>
+                                <td>{{ inquiry.email }}</td>
+                                <td>{{ inquiry.subject }}</td>
+                                <td>{{ inquiry.created_at.strftime('%Y-%m-%d %H:%M') if inquiry.created_at else 'N/A' }}</td>
+                                <td>
+                                    <button class="btn btn-small" onclick="viewInquiry({{ inquiry.id }}, '{{ inquiry.message }}')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-small btn-danger" onclick="deleteInquiry({{ inquiry.id }})">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>No inquiries yet</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal for viewing inquiry -->
+    <div id="inquiryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Inquiry Details</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="inquiryMessage"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/js/admin.js"></script>
+</body>
+</html>

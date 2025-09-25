@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Programmers Union{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Ready to start your project? Let's discuss how we can help you succeed</p>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container">
+        {% if success %}
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i>
+            {{ success }}
+        </div>
+        {% endif %}
+        
+        <div class="contact-content">
+            <div class="contact-form-container">
+                <h2>Send us a message</h2>
+                <form class="contact-form" method="POST" action="/contact">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <h2>Get in touch</h2>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>info@programmersunion.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Address</h4>
+                        <p>123 Tech Street<br>Digital City, DC 12345</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Business Hours</h4>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="map-section">
+    <div class="container">
+        <div class="map-placeholder">
+            <i class="fas fa-map"></i>
+            <p>Interactive Map Coming Soon</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
