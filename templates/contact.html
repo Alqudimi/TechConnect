@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Contact Us - Programmers Union{% endblock %}
+{% block title %}{{ translations.navigation.contact }} - {{ translations.meta.site_title }}{% endblock %}
 
 {% block content %}
 <section class="page-hero">
     <div class="container">
-        <h1>Contact Us</h1>
-        <p>Ready to start your project? Let's discuss how we can help you succeed</p>
+        <h1>{{ translations.contact.page_title }}</h1>
+        <p>{{ translations.contact.page_description }}</p>
     </div>
 </section>
 
@@ -21,59 +21,59 @@
         
         <div class="contact-content">
             <div class="contact-form-container">
-                <h2>Send us a message</h2>
+                <h2>{{ translations.contact.form_title }}</h2>
                 <form class="contact-form" method="POST" action="/contact">
                     <div class="form-group">
-                        <label for="name">Full Name</label>
+                        <label for="name">{{ translations.contact.form_fields.name }}</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address</label>
+                        <label for="email">{{ translations.contact.form_fields.email }}</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Subject</label>
+                        <label for="subject">{{ translations.contact.form_fields.subject }}</label>
                         <input type="text" id="subject" name="subject" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
+                        <label for="message">{{ translations.contact.form_fields.message }}</label>
                         <textarea id="message" name="message" rows="6" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-paper-plane"></i>
-                        Send Message
+                        {{ translations.contact.form_fields.submit }}
                     </button>
                 </form>
             </div>
             
             <div class="contact-info">
-                <h2>Get in touch</h2>
+                <h2>{{ translations.contact.info_title }}</h2>
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
                     <div>
-                        <h4>Email</h4>
-                        <p>info@programmersunion.com</p>
+                        <h4>{{ translations.contact.info.email }}</h4>
+                        <p>{{ contact_info.email }}</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
                     <div>
-                        <h4>Phone</h4>
-                        <p>+1 (555) 123-4567</p>
+                        <h4>{{ translations.contact.info.phone }}</h4>
+                        <p>{{ contact_info.phone }}</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <div>
-                        <h4>Address</h4>
-                        <p>123 Tech Street<br>Digital City, DC 12345</p>
+                        <h4>{{ translations.contact.info.address }}</h4>
+                        <p>{{ contact_info.address }}<br>{{ contact_info.city }}</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-clock"></i>
                     <div>
-                        <h4>Business Hours</h4>
-                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM</p>
+                        <h4>{{ translations.contact.info.hours }}</h4>
+                        <p>{{ translations.contact.info.hours_text | safe }}</p>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
     <div class="container">
         <div class="map-placeholder">
             <i class="fas fa-map"></i>
-            <p>Interactive Map Coming Soon</p>
+            <p>{{ translations.contact.map_placeholder }}</p>
         </div>
     </div>
 </section>

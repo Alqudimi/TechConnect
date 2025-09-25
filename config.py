@@ -37,5 +37,11 @@ class Settings:
     # Rate Limiting
     MAX_LOGIN_ATTEMPTS = 5
     LOGIN_LOCKOUT_MINUTES = 15
+    
+    # Contact Information
+    COMPANY_EMAIL: str = os.environ.get('COMPANY_EMAIL', 'info@programmersunion.com')
+    COMPANY_PHONE: str = os.environ.get('COMPANY_PHONE', '+1 (555) 123-4567') 
+    COMPANY_ADDRESS: str = os.environ.get('COMPANY_ADDRESS', '123 Tech Street')
+    COMPANY_CITY: str = os.environ.get('COMPANY_CITY', 'Digital City, DC 12345')
 
 settings = Settings()

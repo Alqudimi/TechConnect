@@ -116,7 +116,13 @@ def get_context_for_language(request: Request, lang: str | None = None) -> dict:
         "text_direction": get_text_direction(lang),
         "is_rtl": is_rtl_language(lang),
         "translations": languages.get(lang, languages.get(default_language, {})),
-        "supported_languages": supported_languages
+        "supported_languages": supported_languages,
+        "contact_info": {
+            "email": settings.COMPANY_EMAIL,
+            "phone": settings.COMPANY_PHONE,
+            "address": settings.COMPANY_ADDRESS,
+            "city": settings.COMPANY_CITY
+        }
     }
 
 # Security middleware

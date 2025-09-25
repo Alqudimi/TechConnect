@@ -258,3 +258,45 @@ body.rtl {
     margin-left: 0.5rem;
     margin-right: 0;
 }
+
+/* Additional improvements for services page pricing cards */
+.rtl .pricing-card {
+    text-align: right;
+}
+
+.rtl .pricing-card .price {
+    text-align: center;
+}
+
+/* Portfolio filters RTL improvements */
+.rtl .portfolio-filters {
+    justify-content: flex-start;
+}
+
+.rtl .portfolio-item {
+    text-align: right;
+}
+
+/* Service details RTL improvements */
+.rtl .service-detail {
+    flex-direction: row-reverse;
+}
+
+.rtl .service-detail:nth-child(even) {
+    flex-direction: row;
+}
+
+/* Team members RTL improvements */
+.rtl .team-member {
+    text-align: right;
+}
+
+/* Values grid RTL improvements */
+.rtl .value-item {
+    text-align: right;
+}
+
+.rtl .value-item i {
+    margin-left: 1rem;
+    margin-right: 0;
+}

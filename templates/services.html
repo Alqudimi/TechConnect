@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Services - Programmers Union{% endblock %}
+{% block title %}{{ translations.navigation.services }} - {{ translations.meta.site_title }}{% endblock %}
 
 {% block content %}
 <section class="page-hero">
     <div class="container">
-        <h1>Our Services</h1>
-        <p>Comprehensive software development solutions tailored to your business needs</p>
+        <h1>{{ translations.navigation.services }}</h1>
+        <p>{{ translations.services.section_title }}</p>
     </div>
 </section>
 
@@ -14,14 +14,12 @@
     <div class="container">
         <div class="service-detail">
             <div class="service-content">
-                <h2>Web Development</h2>
-                <p>Build powerful, scalable web applications with modern frameworks and technologies. We create responsive, user-friendly websites that drive engagement and conversion.</p>
+                <h2>{{ translations.services.web_development.title }}</h2>
+                <p>{{ translations.services.web_development.detailed_description }}</p>
                 <ul class="service-features">
-                    <li>Custom Web Applications</li>
-                    <li>E-commerce Solutions</li>
-                    <li>Content Management Systems</li>
-                    <li>Progressive Web Apps</li>
-                    <li>API Development & Integration</li>
+                    {% for feature in translations.services.web_development.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
                 </ul>
                 <div class="service-tech">
                     <span class="tech-badge">React</span>
@@ -41,14 +39,12 @@
                 <i class="fas fa-mobile-alt"></i>
             </div>
             <div class="service-content">
-                <h2>Mobile App Development</h2>
-                <p>Create engaging mobile experiences for iOS and Android platforms. Our apps are built for performance, usability, and scalability.</p>
+                <h2>{{ translations.services.mobile_apps.title }}</h2>
+                <p>{{ translations.services.mobile_apps.detailed_description }}</p>
                 <ul class="service-features">
-                    <li>Native iOS & Android Apps</li>
-                    <li>Cross-platform Solutions</li>
-                    <li>UI/UX Design</li>
-                    <li>App Store Optimization</li>
-                    <li>Push Notifications & Analytics</li>
+                    {% for feature in translations.services.mobile_apps.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
                 </ul>
                 <div class="service-tech">
                     <span class="tech-badge">React Native</span>
@@ -62,14 +58,12 @@
 
         <div class="service-detail">
             <div class="service-content">
-                <h2>Cloud Solutions</h2>
-                <p>Deploy and scale your applications with robust cloud infrastructure. We help you leverage the power of cloud computing for optimal performance.</p>
+                <h2>{{ translations.services.cloud_solutions.title }}</h2>
+                <p>{{ translations.services.cloud_solutions.detailed_description }}</p>
                 <ul class="service-features">
-                    <li>Cloud Architecture Design</li>
-                    <li>Migration Services</li>
-                    <li>Serverless Solutions</li>
-                    <li>Database Management</li>
-                    <li>Security & Compliance</li>
+                    {% for feature in translations.services.cloud_solutions.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
                 </ul>
                 <div class="service-tech">
                     <span class="tech-badge">AWS</span>
@@ -89,14 +83,12 @@
                 <i class="fas fa-cogs"></i>
             </div>
             <div class="service-content">
-                <h2>DevOps & Automation</h2>
-                <p>Streamline your development workflow with automated CI/CD pipelines, monitoring, and deployment strategies that reduce time-to-market.</p>
+                <h2>{{ translations.services.devops.title }}</h2>
+                <p>{{ translations.services.devops.detailed_description }}</p>
                 <ul class="service-features">
-                    <li>Continuous Integration/Deployment</li>
-                    <li>Infrastructure as Code</li>
-                    <li>Monitoring & Logging</li>
-                    <li>Performance Optimization</li>
-                    <li>Security Automation</li>
+                    {% for feature in translations.services.devops.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
                 </ul>
                 <div class="service-tech">
                     <span class="tech-badge">Jenkins</span>
@@ -112,45 +104,40 @@
 
 <section class="pricing-section">
     <div class="container">
-        <h2 class="section-title">Flexible Pricing Options</h2>
+        <h2 class="section-title">{{ translations.pricing.title }}</h2>
         <div class="pricing-grid">
             <div class="pricing-card">
-                <h3>Starter</h3>
-                <div class="price">$2,500</div>
-                <p>Perfect for small projects and startups</p>
+                <h3>{{ translations.pricing.starter.title }}</h3>
+                <div class="price">{{ translations.pricing.starter.price }}</div>
+                <p>{{ translations.pricing.starter.description }}</p>
                 <ul>
-                    <li>Basic web application</li>
-                    <li>Responsive design</li>
-                    <li>3 months support</li>
-                    <li>Basic SEO optimization</li>
+                    {% for feature in translations.pricing.starter.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
                 </ul>
-                <a href="/contact" class="btn btn-outline">Get Started</a>
+                <a href="/contact?lang={{ lang }}" class="btn btn-outline">{{ translations.pricing.starter.button }}</a>
             </div>
             <div class="pricing-card featured">
-                <h3>Professional</h3>
-                <div class="price">$7,500</div>
-                <p>Ideal for growing businesses</p>
+                <h3>{{ translations.pricing.professional.title }}</h3>
+                <div class="price">{{ translations.pricing.professional.price }}</div>
+                <p>{{ translations.pricing.professional.description }}</p>
                 <ul>
-                    <li>Advanced web application</li>
-                    <li>Custom features</li>
-                    <li>6 months support</li>
-                    <li>Advanced integrations</li>
-                    <li>Performance optimization</li>
+                    {% for feature in translations.pricing.professional.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
                 </ul>
-                <a href="/contact" class="btn btn-primary">Most Popular</a>
+                <a href="/contact?lang={{ lang }}" class="btn btn-primary">{{ translations.pricing.professional.button }}</a>
             </div>
             <div class="pricing-card">
-                <h3>Enterprise</h3>
-                <div class="price">Custom</div>
-                <p>For large-scale applications</p>
+                <h3>{{ translations.pricing.enterprise.title }}</h3>
+                <div class="price">{{ translations.pricing.enterprise.price }}</div>
+                <p>{{ translations.pricing.enterprise.description }}</p>
                 <ul>
-                    <li>Complex enterprise solutions</li>
-                    <li>Scalable architecture</li>
-                    <li>12 months support</li>
-                    <li>Dedicated team</li>
-                    <li>Priority support</li>
+                    {% for feature in translations.pricing.enterprise.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
                 </ul>
-                <a href="/contact" class="btn btn-outline">Contact Us</a>
+                <a href="/contact?lang={{ lang }}" class="btn btn-outline">{{ translations.pricing.enterprise.button }}</a>
             </div>
         </div>
     </div>
