@@ -1,0 +1,260 @@
+/* RTL (Right-to-Left) Support for Arabic Language */
+
+/* Arabic font support */
+body.rtl {
+    font-family: 'Cairo', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Navigation adjustments for RTL */
+.rtl .nav-container {
+    direction: rtl;
+}
+
+.rtl .nav-menu {
+    flex-direction: row-reverse;
+}
+
+.rtl .nav-logo {
+    order: 2;
+}
+
+.rtl .language-switcher {
+    order: 1;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.rtl .hamburger {
+    order: 0;
+}
+
+/* Language switcher styling */
+.language-switcher {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+.language-switcher a {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease;
+}
+
+.language-switcher a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.language-switcher a.active {
+    background: #007bff;
+    font-weight: 500;
+}
+
+/* Button and form adjustments */
+.rtl .btn {
+    text-align: center;
+}
+
+.rtl .hero-buttons {
+    direction: ltr; /* Keep button order as intended */
+}
+
+/* Footer adjustments */
+.rtl .footer-content {
+    direction: rtl;
+}
+
+.rtl .footer-section ul {
+    text-align: right;
+}
+
+/* Content alignment */
+.rtl .hero-content {
+    text-align: right;
+}
+
+.rtl .section-title {
+    text-align: right;
+}
+
+/* Services grid RTL */
+.rtl .services-grid {
+    direction: rtl;
+}
+
+.rtl .service-card {
+    text-align: right;
+}
+
+/* Portfolio and other grids */
+.rtl .portfolio-grid,
+.rtl .team-grid,
+.rtl .values-grid,
+.rtl .pricing-grid {
+    direction: rtl;
+}
+
+/* Contact form RTL */
+.rtl .contact-form {
+    direction: rtl;
+}
+
+.rtl .contact-form .form-group {
+    text-align: right;
+}
+
+.rtl .contact-form label {
+    text-align: right;
+    display: block;
+}
+
+.rtl .contact-form input,
+.rtl .contact-form textarea {
+    text-align: right;
+    direction: rtl;
+}
+
+/* Social links RTL */
+.rtl .social-links {
+    justify-content: flex-end;
+}
+
+/* Features and stats RTL */
+.rtl .feature {
+    flex-direction: row-reverse;
+}
+
+.rtl .feature i {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+.rtl .stats-grid {
+    direction: rtl;
+}
+
+/* Tech badges and other inline elements */
+.rtl .service-tech,
+.rtl .portfolio-tech,
+.rtl .member-skills {
+    direction: rtl;
+    justify-content: flex-end;
+}
+
+/* Icon adjustments for RTL */
+.rtl .contact-item {
+    flex-direction: row-reverse;
+}
+
+.rtl .contact-item i {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+/* Text alignment utilities */
+.rtl h1,
+.rtl h2,
+.rtl h3,
+.rtl h4,
+.rtl h5,
+.rtl h6 {
+    text-align: right;
+}
+
+.rtl p {
+    text-align: right;
+}
+
+/* Pagination and filters RTL */
+.rtl .portfolio-filters {
+    direction: rtl;
+    justify-content: flex-end;
+}
+
+/* Testimonials RTL */
+.rtl .testimonials-grid {
+    direction: rtl;
+}
+
+.rtl .testimonial-content {
+    text-align: right;
+}
+
+.rtl .testimonial-author {
+    text-align: right;
+}
+
+/* Admin panel RTL (if applicable) */
+.rtl .admin-nav {
+    direction: rtl;
+}
+
+/* Responsive adjustments for RTL */
+@media (max-width: 768px) {
+    .rtl .nav-menu {
+        text-align: right;
+    }
+    
+    .rtl .hero-content {
+        text-align: center;
+    }
+    
+    .rtl .language-switcher {
+        margin-right: 0;
+        margin-left: 0;
+        justify-content: center;
+    }
+}
+
+/* Fix for mixed content (Arabic + English) */
+.rtl .tech-badge,
+.rtl .price {
+    direction: ltr;
+    display: inline-block;
+}
+
+/* Ensure proper spacing for Arabic text */
+.rtl * {
+    letter-spacing: 0 !important;
+}
+
+/* Arabic text rendering optimization */
+.rtl {
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "liga", "kern";
+    font-feature-settings: "liga", "kern";
+}
+
+/* Fix for code/tech elements that should remain LTR */
+.rtl code,
+.rtl .tech-item,
+.rtl .tech-badge,
+.rtl .price,
+.rtl .stat-number {
+    direction: ltr;
+    text-align: center;
+    unicode-bidi: embed;
+}
+
+/* Breadcrumb RTL support */
+.rtl .breadcrumb {
+    direction: rtl;
+    flex-direction: row-reverse;
+}
+
+/* Form validation messages RTL */
+.rtl .alert {
+    text-align: right;
+}
+
+.rtl .alert i {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}

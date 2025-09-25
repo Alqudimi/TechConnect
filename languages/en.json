@@ -1,0 +1,279 @@
+{
+  "meta": {
+    "site_title": "Programmers Union - Professional Software Services",
+    "language": "English",
+    "direction": "ltr"
+  },
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Transform Your Ideas Into",
+    "title_highlight": "Powerful Software",
+    "description": "We're a professional software development team that specializes in creating custom web applications, mobile apps, and enterprise solutions that drive business growth.",
+    "start_project": "Start Your Project",
+    "view_work": "View Our Work"
+  },
+  "services": {
+    "section_title": "Our Expertise",
+    "web_development": {
+      "title": "Web Development",
+      "description": "Modern, responsive websites and web applications built with cutting-edge technologies.",
+      "detailed_description": "Build powerful, scalable web applications with modern frameworks and technologies. We create responsive, user-friendly websites that drive engagement and conversion.",
+      "features": [
+        "Custom Web Applications",
+        "E-commerce Solutions",
+        "Content Management Systems",
+        "Progressive Web Apps",
+        "API Development & Integration"
+      ]
+    },
+    "mobile_apps": {
+      "title": "Mobile Apps",
+      "description": "Native and cross-platform mobile applications for iOS and Android platforms.",
+      "detailed_description": "Create engaging mobile experiences for iOS and Android platforms. Our apps are built for performance, usability, and scalability.",
+      "features": [
+        "Native iOS & Android Apps",
+        "Cross-platform Solutions",
+        "UI/UX Design",
+        "App Store Optimization",
+        "Push Notifications & Analytics"
+      ]
+    },
+    "cloud_solutions": {
+      "title": "Cloud Solutions",
+      "description": "Scalable cloud infrastructure and deployment solutions for your applications.",
+      "detailed_description": "Deploy and scale your applications with robust cloud infrastructure. We help you leverage the power of cloud computing for optimal performance.",
+      "features": [
+        "Cloud Architecture Design",
+        "Migration Services",
+        "Serverless Solutions",
+        "Database Management",
+        "Security & Compliance"
+      ]
+    },
+    "devops": {
+      "title": "DevOps & Automation",
+      "description": "Streamline your development process with automated CI/CD pipelines.",
+      "detailed_description": "Streamline your development workflow with automated CI/CD pipelines, monitoring, and deployment strategies that reduce time-to-market.",
+      "features": [
+        "Continuous Integration/Deployment",
+        "Infrastructure as Code",
+        "Monitoring & Logging",
+        "Performance Optimization",
+        "Security Automation"
+      ]
+    }
+  },
+  "why_choose_us": {
+    "title": "Why Choose Programmers Union?",
+    "expert_team": {
+      "title": "Expert Team",
+      "description": "Our skilled developers have years of experience in modern technologies."
+    },
+    "quality_assurance": {
+      "title": "Quality Assurance",
+      "description": "We ensure every project meets the highest standards of quality and performance."
+    },
+    "timely_delivery": {
+      "title": "Timely Delivery",
+      "description": "We respect deadlines and deliver projects on time, every time."
+    },
+    "ongoing_support": {
+      "title": "Ongoing Support",
+      "description": "We provide continuous support and maintenance for all our projects."
+    }
+  },
+  "cta": {
+    "title": "Ready to Start Your Project?",
+    "description": "Let's discuss how we can help you achieve your software development goals.",
+    "button": "Get Started Today"
+  },
+  "pricing": {
+    "title": "Flexible Pricing Options",
+    "starter": {
+      "title": "Starter",
+      "price": "$2,500",
+      "description": "Perfect for small projects and startups",
+      "features": [
+        "Basic web application",
+        "Responsive design",
+        "3 months support",
+        "Basic SEO optimization"
+      ],
+      "button": "Get Started"
+    },
+    "professional": {
+      "title": "Professional",
+      "price": "$7,500",
+      "description": "Ideal for growing businesses",
+      "features": [
+        "Advanced web application",
+        "Custom features",
+        "6 months support",
+        "Advanced integrations",
+        "Performance optimization"
+      ],
+      "button": "Most Popular"
+    },
+    "enterprise": {
+      "title": "Enterprise",
+      "price": "Custom",
+      "description": "For large-scale applications",
+      "features": [
+        "Complex enterprise solutions",
+        "Scalable architecture",
+        "12 months support",
+        "Dedicated team",
+        "Priority support"
+      ],
+      "button": "Contact Us"
+    }
+  },
+  "about": {
+    "page_title": "About Programmers Union",
+    "page_description": "We are passionate developers dedicated to creating exceptional software solutions",
+    "mission_title": "Our Mission",
+    "mission_description": "At Programmers Union, we believe that great software has the power to transform businesses and improve lives. Our mission is to deliver cutting-edge technology solutions that help our clients achieve their goals and stay ahead in the digital age.",
+    "values_title": "Our Values",
+    "values": {
+      "quality_code": {
+        "title": "Quality Code",
+        "description": "We write clean, maintainable, and scalable code that stands the test of time."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "description": "We work closely with our clients to understand their needs and deliver solutions that exceed expectations."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We stay at the forefront of technology trends to provide innovative solutions."
+      },
+      "reliability": {
+        "title": "Reliability",
+        "description": "We deliver projects on time and provide ongoing support to ensure success."
+      }
+    },
+    "team_title": "Meet Our Team",
+    "team_members": {
+      "alex": {
+        "name": "Alex Thompson",
+        "role": "Full Stack Developer",
+        "description": "Specializes in React, Node.js, and cloud architecture with 8+ years of experience."
+      },
+      "sarah": {
+        "name": "Sarah Martinez",
+        "role": "UI/UX Designer",
+        "description": "Creates beautiful and intuitive user experiences with a focus on modern design principles."
+      },
+      "david": {
+        "name": "David Kim",
+        "role": "Mobile Developer",
+        "description": "Expert in cross-platform mobile development using React Native and Flutter."
+      },
+      "emma": {
+        "name": "Emma Wilson",
+        "role": "DevOps Engineer",
+        "description": "Ensures reliable deployment and scaling with expertise in cloud infrastructure."
+      }
+    },
+    "stats": {
+      "projects": "Projects Completed",
+      "clients": "Happy Clients",
+      "experience": "Years Experience",
+      "support": "Support Available"
+    }
+  },
+  "portfolio": {
+    "page_title": "Our Portfolio",
+    "page_description": "Showcasing successful projects and innovative solutions we've delivered",
+    "filters": {
+      "all": "All Projects",
+      "web": "Web Apps",
+      "mobile": "Mobile Apps",
+      "cloud": "Cloud Solutions"
+    },
+    "projects": {
+      "ecommerce": {
+        "title": "E-Commerce Platform",
+        "description": "A comprehensive e-commerce solution with inventory management, payment processing, and analytics dashboard."
+      },
+      "health_app": {
+        "title": "Health Monitoring App",
+        "description": "Mobile application for tracking health metrics with real-time synchronization and doctor consultation features."
+      },
+      "analytics": {
+        "title": "Analytics Dashboard",
+        "description": "Cloud-based analytics platform with real-time data processing and customizable reporting capabilities."
+      },
+      "lms": {
+        "title": "Learning Management System",
+        "description": "Educational platform with course management, student tracking, and interactive learning modules."
+      },
+      "food_delivery": {
+        "title": "Food Delivery App",
+        "description": "Cross-platform mobile app for food ordering with real-time tracking and payment integration."
+      },
+      "microservices": {
+        "title": "Microservices Architecture",
+        "description": "Scalable microservices solution with containerization, load balancing, and automated deployment."
+      }
+    },
+    "testimonials": {
+      "title": "What Our Clients Say",
+      "clients": [
+        {
+          "name": "Sarah Johnson",
+          "title": "CEO, TechStart Inc.",
+          "quote": "Programmers Union delivered exceptional results. Their attention to detail and technical expertise exceeded our expectations."
+        },
+        {
+          "name": "Michael Chen",
+          "title": "CTO, InnovateLabs",
+          "quote": "The team's professionalism and ability to meet deadlines made our project a huge success. Highly recommended!"
+        },
+        {
+          "name": "Emily Rodriguez",
+          "title": "Product Manager, GrowthCorp",
+          "quote": "Outstanding development quality and ongoing support. They truly understand business requirements."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "page_title": "Contact Us",
+    "page_description": "Ready to start your project? Let's discuss how we can help you succeed",
+    "form_title": "Send us a message",
+    "form_fields": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message"
+    },
+    "info_title": "Get in touch",
+    "info": {
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "hours": "Business Hours",
+      "hours_text": "Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM"
+    },
+    "map_placeholder": "Interactive Map Coming Soon"
+  },
+  "footer": {
+    "company_description": "Professional software development services that transform your ideas into powerful digital solutions.",
+    "services_title": "Services",
+    "company_title": "Company",
+    "contact_title": "Contact Info",
+    "copyright": "&copy; 2025 Programmers Union. All rights reserved."
+  },
+  "language_switcher": {
+    "english": "English",
+    "arabic": "العربية"
+  }
+}

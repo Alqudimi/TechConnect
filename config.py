@@ -6,17 +6,13 @@ class Settings:
     DATABASE_URL = "sqlite:///./programmers_union.db"
     
     # Security
-    SESSION_SECRET: str = os.environ.get('SESSION_SECRET')
+    SESSION_SECRET: str = os.environ.get('SESSION_SECRET', '')
     if not SESSION_SECRET:
         raise ValueError("SESSION_SECRET environment variable must be set")
     
-    ADMIN_USERNAME: str = os.environ.get('ADMIN_USERNAME')
-    if not ADMIN_USERNAME:
-        raise ValueError("ADMIN_USERNAME environment variable must be set")
-    
-    ADMIN_PASSWORD: str = os.environ.get('ADMIN_PASSWORD')
-    if not ADMIN_PASSWORD:
-        raise ValueError("ADMIN_PASSWORD environment variable must be set")
+    # For development, provide fallback values - CHANGE THESE IN PRODUCTION!
+    ADMIN_USERNAME: str = os.environ.get('ADMIN_USERNAME', 'admin')
+    ADMIN_PASSWORD: str = os.environ.get('ADMIN_PASSWORD', 'temp_password_123')  # Change this!
     
     # JWT Configuration
     JWT_ALGORITHM = "HS256"
@@ -29,9 +25,9 @@ class Settings:
     # Email
     SMTP_SERVER = "smtp.gmail.com"
     SMTP_PORT = 587
-    SMTP_EMAIL: Optional[str] = os.environ.get('SMTP_EMAIL')
-    SMTP_PASSWORD: Optional[str] = os.environ.get('SMTP_PASSWORD')
-    ADMIN_EMAIL: Optional[str] = os.environ.get('ADMIN_EMAIL')
+    SMTP_EMAIL: Optional[str] = os.environ.get('SMTP_EMAIL', 'noreply@example.com')  # Change this!
+    SMTP_PASSWORD: Optional[str] = os.environ.get('SMTP_PASSWORD', 'temp_password')  # Change this!
+    ADMIN_EMAIL: Optional[str] = os.environ.get('ADMIN_EMAIL', 'admin@example.com')  # Change this!
     
     # Application
     DEBUG = os.environ.get('DEBUG', 'false').lower() == 'true'

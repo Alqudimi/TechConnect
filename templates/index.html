@@ -6,16 +6,15 @@
     <div class="hero-container">
         <div class="hero-content">
             <h1 class="hero-title">
-                Transform Your Ideas Into 
-                <span class="highlight">Powerful Software</span>
+                {{ translations.hero.title }} 
+                <span class="highlight">{{ translations.hero.title_highlight }}</span>
             </h1>
             <p class="hero-description">
-                We're a professional software development team that specializes in creating 
-                custom web applications, mobile apps, and enterprise solutions that drive business growth.
+                {{ translations.hero.description }}
             </p>
             <div class="hero-buttons">
-                <a href="/contact" class="btn btn-primary">Start Your Project</a>
-                <a href="/portfolio" class="btn btn-secondary">View Our Work</a>
+                <a href="/contact?lang={{ lang }}" class="btn btn-primary">{{ translations.hero.start_project }}</a>
+                <a href="/portfolio?lang={{ lang }}" class="btn btn-secondary">{{ translations.hero.view_work }}</a>
             </div>
         </div>
         <div class="hero-visual">
@@ -32,35 +31,35 @@
 <!-- Services Preview -->
 <section class="services-preview">
     <div class="container">
-        <h2 class="section-title">Our Expertise</h2>
+        <h2 class="section-title">{{ translations.services.section_title }}</h2>
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-globe"></i>
                 </div>
-                <h3>Web Development</h3>
-                <p>Modern, responsive websites and web applications built with cutting-edge technologies.</p>
+                <h3>{{ translations.services.web_development.title }}</h3>
+                <p>{{ translations.services.web_development.description }}</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-mobile-alt"></i>
                 </div>
-                <h3>Mobile Apps</h3>
-                <p>Native and cross-platform mobile applications for iOS and Android platforms.</p>
+                <h3>{{ translations.services.mobile_apps.title }}</h3>
+                <p>{{ translations.services.mobile_apps.description }}</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-cloud"></i>
                 </div>
-                <h3>Cloud Solutions</h3>
-                <p>Scalable cloud infrastructure and deployment solutions for your applications.</p>
+                <h3>{{ translations.services.cloud_solutions.title }}</h3>
+                <p>{{ translations.services.cloud_solutions.description }}</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-cogs"></i>
                 </div>
-                <h3>DevOps & Automation</h3>
-                <p>Streamline your development process with automated CI/CD pipelines.</p>
+                <h3>{{ translations.services.devops.title }}</h3>
+                <p>{{ translations.services.devops.description }}</p>
             </div>
         </div>
     </div>
@@ -71,33 +70,33 @@
     <div class="container">
         <div class="why-content">
             <div class="why-text">
-                <h2>Why Choose Programmers Union?</h2>
+                <h2>{{ translations.why_choose_us.title }}</h2>
                 <div class="feature">
                     <i class="fas fa-check-circle"></i>
                     <div>
-                        <h4>Expert Team</h4>
-                        <p>Our skilled developers have years of experience in modern technologies.</p>
+                        <h4>{{ translations.why_choose_us.expert_team.title }}</h4>
+                        <p>{{ translations.why_choose_us.expert_team.description }}</p>
                     </div>
                 </div>
                 <div class="feature">
                     <i class="fas fa-check-circle"></i>
                     <div>
-                        <h4>Quality Assurance</h4>
-                        <p>We ensure every project meets the highest standards of quality and performance.</p>
+                        <h4>{{ translations.why_choose_us.quality_assurance.title }}</h4>
+                        <p>{{ translations.why_choose_us.quality_assurance.description }}</p>
                     </div>
                 </div>
                 <div class="feature">
                     <i class="fas fa-check-circle"></i>
                     <div>
-                        <h4>Timely Delivery</h4>
-                        <p>We respect deadlines and deliver projects on time, every time.</p>
+                        <h4>{{ translations.why_choose_us.timely_delivery.title }}</h4>
+                        <p>{{ translations.why_choose_us.timely_delivery.description }}</p>
                     </div>
                 </div>
                 <div class="feature">
                     <i class="fas fa-check-circle"></i>
                     <div>
-                        <h4>Ongoing Support</h4>
-                        <p>We provide continuous support and maintenance for all our projects.</p>
+                        <h4>{{ translations.why_choose_us.ongoing_support.title }}</h4>
+                        <p>{{ translations.why_choose_us.ongoing_support.description }}</p>
                     </div>
                 </div>
             </div>
@@ -119,9 +118,9 @@
 <section class="cta-section">
     <div class="container">
         <div class="cta-content">
-            <h2>Ready to Start Your Project?</h2>
-            <p>Let's discuss how we can help you achieve your software development goals.</p>
-            <a href="/contact" class="btn btn-primary">Get Started Today</a>
+            <h2>{{ translations.cta.title }}</h2>
+            <p>{{ translations.cta.description }}</p>
+            <a href="/contact?lang={{ lang }}" class="btn btn-primary">{{ translations.cta.button }}</a>
         </div>
     </div>
 </section>

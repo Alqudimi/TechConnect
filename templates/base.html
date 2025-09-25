@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}" dir="{{ text_direction }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Programmers Union - Professional Software Services{% endblock %}</title>
+    <title>{% block title %}{{ translations.meta.site_title }}{% endblock %}</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    {% if is_rtl %}
+    <link rel="stylesheet" href="/static/css/rtl.css">
+    {% endif %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    {% if is_rtl %}
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    {% endif %}
 </head>
-<body>
+<body class="{{ 'rtl' if is_rtl else 'ltr' }}">
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <a href="/">
+                    <a href="/?lang={{ lang }}">
                         <i class="fas fa-code"></i>
                         <span>Programmers Union</span>
                     </a>
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="/" class="nav-link">Home</a>
+                        <a href="/?lang={{ lang }}" class="nav-link">{{ translations.navigation.home }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/services" class="nav-link">Services</a>
+                        <a href="/services?lang={{ lang }}" class="nav-link">{{ translations.navigation.services }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/portfolio" class="nav-link">Portfolio</a>
+                        <a href="/portfolio?lang={{ lang }}" class="nav-link">{{ translations.navigation.portfolio }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/about" class="nav-link">About</a>
+                        <a href="/about?lang={{ lang }}" class="nav-link">{{ translations.navigation.about }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/contact" class="nav-link">Contact</a>
+                        <a href="/contact?lang={{ lang }}" class="nav-link">{{ translations.navigation.contact }}</a>
                     </li>
                 </ul>
+                <div class="language-switcher">
+                    <a href="{{ request.url.path }}?lang=en" class="{{ 'active' if lang == 'en' else '' }}" title="English">EN</a>
+                    <a href="{{ request.url.path }}?lang=ar" class="{{ 'active' if lang == 'ar' else '' }}" title="العربية">عربي</a>
+                </div>
                 <div class="hamburger">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -53,7 +63,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Programmers Union</h3>
-                    <p>Professional software development services that transform your ideas into powerful digital solutions.</p>
+                    <p>{{ translations.footer.company_description }}</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -62,31 +72,31 @@
                     </div>
                 </div>
                 <div class="footer-section">
-                    <h4>Services</h4>
+                    <h4>{{ translations.footer.services_title }}</h4>
                     <ul>
-                        <li><a href="/services">Web Development</a></li>
-                        <li><a href="/services">Mobile Apps</a></li>
-                        <li><a href="/services">Cloud Solutions</a></li>
-                        <li><a href="/services">DevOps</a></li>
+                        <li><a href="/services?lang={{ lang }}">{{ translations.services.web_development.title }}</a></li>
+                        <li><a href="/services?lang={{ lang }}">{{ translations.services.mobile_apps.title }}</a></li>
+                        <li><a href="/services?lang={{ lang }}">{{ translations.services.cloud_solutions.title }}</a></li>
+                        <li><a href="/services?lang={{ lang }}">{{ translations.services.devops.title }}</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Company</h4>
+                    <h4>{{ translations.footer.company_title }}</h4>
                     <ul>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/portfolio">Our Work</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/about?lang={{ lang }}">{{ translations.navigation.about }}</a></li>
+                        <li><a href="/portfolio?lang={{ lang }}">{{ translations.navigation.portfolio }}</a></li>
+                        <li><a href="/contact?lang={{ lang }}">{{ translations.navigation.contact }}</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
+                    <h4>{{ translations.footer.contact_title }}</h4>
                     <p><i class="fas fa-envelope"></i> info@programmersunion.com</p>
                     <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
                     <p><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Digital City</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Programmers Union. All rights reserved.</p>
+                <p>{{ translations.footer.copyright | safe }}</p>
             </div>
         </div>
     </footer>

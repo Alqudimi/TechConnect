@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Depends, Form, HTTPException, status
+from fastapi import FastAPI, Request, Depends, Form, HTTPException, status, Query
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -9,6 +9,9 @@ import database
 import models
 import crud
 import re
+import json
+import glob
+from pathlib import Path
 from database import SessionLocal, engine
 from email_service import send_contact_email
 from auth import authenticate_user, create_access_token, require_admin, ACCESS_TOKEN_EXPIRE_MINUTES, get_client_ip
@@ -20,6 +23,101 @@ from config import settings
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Programmers Union", description="Professional Software Services Company")
+
+# Internationalization (i18n) setup
+default_language = 'en'
+supported_languages = ['en', 'ar']
+languages = {}
+
+# Load language files
+def load_languages():
+    global languages
+    language_files = glob.glob("languages/*.json")
+    for lang_file in language_files:
+        lang_code = Path(lang_file).stem
+        try:
+            with open(lang_file, 'r', encoding='utf8') as file:
+                languages[lang_code] = json.load(file)
+        except Exception as e:
+            print(f"Error loading language file {lang_file}: {e}")
+
+# Initialize languages
+load_languages()
+
+# Language helper functions
+def is_rtl_language(lang: str) -> bool:
+    """Check if language is right-to-left"""
+    rtl_languages = {"ar", "he", "fa", "ur", "ps", "sd"}
+    return lang in rtl_languages
+
+def get_text_direction(lang: str) -> str:
+    """Get text direction for language"""
+    return "rtl" if is_rtl_language(lang) else "ltr"
+
+def get_language_from_request(request: Request) -> str:
+    """Get language from query parameter, cookie, or header"""
+    # Priority: query param > cookie > accept-language header > default
+    lang = (
+        request.query_params.get('lang') or
+        request.cookies.get('lang') or
+        parse_accept_language(request.headers.get('Accept-Language', '')) or
+        default_language
+    )
+    
+    if lang not in supported_languages:
+        lang = default_language
+    
+    return lang
+
+def parse_accept_language(accept_language: str) -> str:
+    """Parse Accept-Language header"""
+    if not accept_language:
+        return ''
+    
+    for lang_range in accept_language.split(','):
+        lang = lang_range.split(';')[0].strip().split('-')[0]
+        if lang in supported_languages:
+            return lang
+    
+    return ''
+
+def get_translation(key: str, lang: str = default_language) -> str:
+    """Get translation for a key"""
+    if lang not in languages:
+        lang = default_language
+    
+    keys = key.split('.')
+    value = languages.get(lang, {})
+    
+    try:
+        for k in keys:
+            value = value[k]
+        return value
+    except (KeyError, TypeError):
+        return key  # Return key if translation not found
+
+def normalize_language(lang: str | None) -> str:
+    """Normalize language to a supported language"""
+    if lang and lang in supported_languages:
+        return lang
+    return default_language
+
+def get_context_for_language(request: Request, lang: str | None = None) -> dict:
+    """Get common template context for language"""
+    if lang is None:
+        lang = get_language_from_request(request)
+    
+    # Normalize language to ensure it's supported
+    lang = normalize_language(lang)
+    
+    return {
+        "request": request,
+        "lang": lang,
+        "text_direction": get_text_direction(lang),
+        "is_rtl": is_rtl_language(lang),
+        "translations": languages.get(lang, languages.get(default_language, {})),
+        "supported_languages": supported_languages
+    }
 
 # Security middleware
 @app.middleware("http")
@@ -79,24 +177,89 @@ def get_db():
         db.close()
 
 @app.get("/", response_class=HTMLResponse)
-async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+async def read_root(request: Request, lang: str | None = Query(None)):
+    context = get_context_for_language(request, lang)
+    response = templates.TemplateResponse("index.html", context)
+    
+    # Set language cookie if lang parameter was provided
+    if lang and normalize_language(lang) in supported_languages:
+        response.set_cookie(
+            key="lang", 
+            value=normalize_language(lang),
+            max_age=31536000,  # 1 year
+            samesite="lax",
+            secure=False  # Set to True in production with HTTPS
+        )
+    
+    return response
 
 @app.get("/services", response_class=HTMLResponse)
-async def services(request: Request):
-    return templates.TemplateResponse("services.html", {"request": request})
+async def services(request: Request, lang: str | None = Query(None)):
+    context = get_context_for_language(request, lang)
+    response = templates.TemplateResponse("services.html", context)
+    
+    # Set language cookie if lang parameter was provided
+    if lang and normalize_language(lang) in supported_languages:
+        response.set_cookie(
+            key="lang", 
+            value=normalize_language(lang),
+            max_age=31536000,
+            samesite="lax",
+            secure=False
+        )
+    
+    return response
 
 @app.get("/portfolio", response_class=HTMLResponse)
-async def portfolio(request: Request):
-    return templates.TemplateResponse("portfolio.html", {"request": request})
+async def portfolio(request: Request, lang: str | None = Query(None)):
+    context = get_context_for_language(request, lang)
+    response = templates.TemplateResponse("portfolio.html", context)
+    
+    # Set language cookie if lang parameter was provided
+    if lang and normalize_language(lang) in supported_languages:
+        response.set_cookie(
+            key="lang", 
+            value=normalize_language(lang),
+            max_age=31536000,
+            samesite="lax",
+            secure=False
+        )
+    
+    return response
 
 @app.get("/about", response_class=HTMLResponse)
-async def about(request: Request):
-    return templates.TemplateResponse("about.html", {"request": request})
+async def about(request: Request, lang: str | None = Query(None)):
+    context = get_context_for_language(request, lang)
+    response = templates.TemplateResponse("about.html", context)
+    
+    # Set language cookie if lang parameter was provided
+    if lang and normalize_language(lang) in supported_languages:
+        response.set_cookie(
+            key="lang", 
+            value=normalize_language(lang),
+            max_age=31536000,
+            samesite="lax",
+            secure=False
+        )
+    
+    return response
 
 @app.get("/contact", response_class=HTMLResponse)
-async def contact(request: Request):
-    return templates.TemplateResponse("contact.html", {"request": request})
+async def contact(request: Request, lang: str | None = Query(None)):
+    context = get_context_for_language(request, lang)
+    response = templates.TemplateResponse("contact.html", context)
+    
+    # Set language cookie if lang parameter was provided
+    if lang and normalize_language(lang) in supported_languages:
+        response.set_cookie(
+            key="lang", 
+            value=normalize_language(lang),
+            max_age=31536000,
+            samesite="lax",
+            secure=False
+        )
+    
+    return response
 
 @app.post("/contact")
 async def submit_contact(
@@ -148,23 +311,20 @@ async def submit_contact(
         else:
             success_message = "Thank you for your message! We'll get back to you soon."
         
-        return templates.TemplateResponse("contact.html", {
-            "request": request, 
-            "success": success_message
-        })
+        context = get_context_for_language(request)
+        context.update({"success": success_message})
+        return templates.TemplateResponse("contact.html", context)
     
     except HTTPException as e:
-        return templates.TemplateResponse("contact.html", {
-            "request": request, 
-            "error": e.detail
-        })
+        context = get_context_for_language(request)
+        context.update({"error": e.detail})
+        return templates.TemplateResponse("contact.html", context)
     except Exception as e:
         from logger import app_logger
         app_logger.error(f"Unexpected error in contact form: {str(e)}", exc_info=True)
-        return templates.TemplateResponse("contact.html", {
-            "request": request, 
-            "error": "An error occurred while processing your request. Please try again."
-        })
+        context = get_context_for_language(request)
+        context.update({"error": "An error occurred while processing your request. Please try again."})
+        return templates.TemplateResponse("contact.html", context)
 
 @app.get("/admin", response_class=HTMLResponse)
 async def admin_login(request: Request):
