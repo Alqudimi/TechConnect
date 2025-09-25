@@ -14,7 +14,9 @@
                 <h1>Admin Dashboard</h1>
                 <div class="admin-actions">
                     <a href="/" target="_blank" class="btn btn-outline">View Website</a>
-                    <a href="/admin" class="btn btn-secondary">Logout</a>
+                    <form method="POST" action="/admin/logout" style="display: inline;">
+                        <button type="submit" class="btn btn-secondary">Logout</button>
+                    </form>
                 </div>
             </div>
         </header>

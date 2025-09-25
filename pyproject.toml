@@ -7,8 +7,13 @@ dependencies = [
     "aiofiles>=24.1.0",
     "fastapi>=0.117.1",
     "jinja2>=3.1.6",
+    "passlib>=1.7.4",
+    "pydantic-settings>=2.11.0",
     "pydantic>=2.11.9",
+    "python-jose>=3.5.0",
     "python-multipart>=0.0.20",
+    "sendgrid>=6.12.5",
     "sqlalchemy>=2.0.43",
     "uvicorn>=0.37.0",
+    "jose>=1.0.0",
 ]

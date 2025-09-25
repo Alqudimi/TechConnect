@@ -3,10 +3,13 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
+from datetime import timedelta
 import database
 import models
 import crud
 from database import SessionLocal, engine
+from email_service import send_contact_email
+from auth import authenticate_user, create_access_token, require_admin, ACCESS_TOKEN_EXPIRE_MINUTES
 import uvicorn
 import os
 
@@ -67,9 +70,22 @@ async def submit_contact(
     # Save to database
     crud.create_contact_inquiry(db=db, **contact_data)
     
+    # Send email notification
+    email_sent = send_contact_email(
+        from_name=name,
+        from_email=email,
+        subject=subject,
+        message=message
+    )
+    
+    if email_sent:
+        success_message = "Thank you for your message! We'll get back to you soon. A confirmation email has been sent to your address."
+    else:
+        success_message = "Thank you for your message! We'll get back to you soon."
+    
     return templates.TemplateResponse("contact.html", {
         "request": request, 
-        "success": "Thank you for your message! We'll get back to you soon."
+        "success": success_message
     })
 
 @app.get("/admin", response_class=HTMLResponse)
@@ -82,10 +98,20 @@ async def admin_authenticate(
     username: str = Form(...),
     password: str = Form(...)
 ):
-    # Simple admin authentication (in production, use proper authentication)
-    if username == "admin" and password == "admin123":
+    if authenticate_user(username, password):
+        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        access_token = create_access_token(
+            data={"sub": username}, expires_delta=access_token_expires
+        )
         response = RedirectResponse(url="/admin/dashboard", status_code=status.HTTP_302_FOUND)
-        response.set_cookie(key="admin_session", value="authenticated")
+        response.set_cookie(
+            key="admin_token", 
+            value=access_token,
+            httponly=True,
+            secure=True,
+            samesite="strict",
+            max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60
+        )
         return response
     else:
         return templates.TemplateResponse("admin/login.html", {
@@ -94,11 +120,11 @@ async def admin_authenticate(
         })
 
 @app.get("/admin/dashboard", response_class=HTMLResponse)
-async def admin_dashboard(request: Request, db: Session = Depends(get_db)):
-    # Check admin session
-    if request.cookies.get("admin_session") != "authenticated":
-        return RedirectResponse(url="/admin")
-    
+async def admin_dashboard(
+    request: Request, 
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(require_admin)
+):
     inquiries = crud.get_contact_inquiries(db)
     return templates.TemplateResponse("admin/dashboard.html", {
         "request": request, 
@@ -106,9 +132,19 @@ async def admin_dashboard(request: Request, db: Session = Depends(get_db)):
     })
 
 @app.delete("/admin/inquiry/{inquiry_id}")
-async def delete_inquiry(inquiry_id: int, db: Session = Depends(get_db)):
+async def delete_inquiry(
+    inquiry_id: int, 
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(require_admin)
+):
     crud.delete_contact_inquiry(db, inquiry_id)
     return {"message": "Inquiry deleted successfully"}
+
+@app.post("/admin/logout")
+async def admin_logout():
+    response = RedirectResponse(url="/admin", status_code=status.HTTP_302_FOUND)
+    response.delete_cookie(key="admin_token")
+    return response
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000)
