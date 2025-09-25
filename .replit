@@ -1,4 +1,4 @@
-modules = ["python-3.11"]
+modules = ["python-3.11", "postgresql-16"]
 [agent]
 expertMode = true
 integrations = ["python_sendgrid:1.0.0"]
@@ -23,18 +23,30 @@ args = "Programmers Union Server"
 name = "Programmers Union Server"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python main.py"
-waitForPort = 5000
-
 [workflows.workflow.metadata]
 outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "uv run python main.py"
+waitForPort = 5000
 
 [[ports]]
 localPort = 5000
 externalPort = 80
 
 [[ports]]
+localPort = 44079
+externalPort = 3002
+
+[[ports]]
 localPort = 45331
 externalPort = 3000
+
+[[ports]]
+localPort = 46879
+externalPort = 3001
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["uv", "run", "python", "main.py"]

@@ -1,27 +1,28 @@
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Optional, Dict
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi import HTTPException, status, Depends, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import os
+import time
 from config import settings
 
 # Security configuration
-SECRET_KEY = os.environ.get('SESSION_SECRET')
-if not SECRET_KEY:
-    raise ValueError("SESSION_SECRET environment variable must be set")
-
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+SECRET_KEY = settings.SESSION_SECRET
+ALGORITHM = settings.JWT_ALGORITHM
+ACCESS_TOKEN_EXPIRE_MINUTES = settings.JWT_EXPIRATION_MINUTES
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 security = HTTPBearer()
 
-# Admin credentials from environment
-ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')
+# Admin credentials from environment (secure)
+ADMIN_USERNAME = settings.ADMIN_USERNAME
+ADMIN_PASSWORD = settings.ADMIN_PASSWORD
 ADMIN_PASSWORD_HASH = pwd_context.hash(ADMIN_PASSWORD)
+
+# Rate limiting storage (in production, use Redis or database)
+login_attempts: Dict[str, Dict[str, int]] = {}
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verify a password against its hash"""
@@ -54,11 +55,73 @@ def verify_token(token: str) -> Optional[dict]:
     except JWTError:
         return None
 
-def authenticate_user(username: str, password: str) -> bool:
-    """Authenticate a user"""
-    if username == ADMIN_USERNAME and verify_password(password, ADMIN_PASSWORD_HASH):
+def get_client_ip(request: Request) -> str:
+    """Get client IP address for rate limiting"""
+    forwarded = request.headers.get("X-Forwarded-For")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
+
+def check_rate_limit(ip: str) -> bool:
+    """Check if IP has exceeded rate limit for login attempts"""
+    current_time = int(time.time())
+    cleanup_old_attempts(current_time)
+    
+    if ip not in login_attempts:
         return True
-    return False
+        
+    attempts = login_attempts[ip]
+    if attempts["count"] >= settings.MAX_LOGIN_ATTEMPTS:
+        lockout_end = attempts["last_attempt"] + (settings.LOGIN_LOCKOUT_MINUTES * 60)
+        if current_time < lockout_end:
+            return False
+        else:
+            # Reset after lockout period
+            del login_attempts[ip]
+            return True
+    
+    return True
+
+def record_failed_attempt(ip: str):
+    """Record a failed login attempt"""
+    current_time = int(time.time())
+    if ip not in login_attempts:
+        login_attempts[ip] = {"count": 1, "last_attempt": current_time}
+    else:
+        login_attempts[ip]["count"] += 1
+        login_attempts[ip]["last_attempt"] = current_time
+
+def cleanup_old_attempts(current_time: int):
+    """Clean up old login attempts to prevent memory leaks"""
+    expired_ips = []
+    for ip, attempts in login_attempts.items():
+        if current_time - attempts["last_attempt"] > (settings.LOGIN_LOCKOUT_MINUTES * 60):
+            expired_ips.append(ip)
+    
+    for ip in expired_ips:
+        del login_attempts[ip]
+
+def authenticate_user(username: str, password: str, request: Request) -> bool:
+    """Authenticate a user with rate limiting"""
+    client_ip = get_client_ip(request)
+    
+    # Check rate limit
+    if not check_rate_limit(client_ip):
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=f"Too many failed attempts. Try again in {settings.LOGIN_LOCKOUT_MINUTES} minutes."
+        )
+    
+    # Verify credentials
+    if username == ADMIN_USERNAME and verify_password(password, ADMIN_PASSWORD_HASH):
+        # Reset failed attempts on successful login
+        if client_ip in login_attempts:
+            del login_attempts[client_ip]
+        return True
+    else:
+        # Record failed attempt
+        record_failed_attempt(client_ip)
+        return False
 
 def get_current_user_from_cookie(request: Request) -> Optional[dict]:
     """Get current user from session cookie"""

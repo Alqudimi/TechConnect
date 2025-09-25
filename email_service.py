@@ -85,5 +85,7 @@ This is an automated confirmation email. Please do not reply to this email.
         return True
         
     except Exception as e:
+        from logger import app_logger
+        app_logger.error(f"Failed to send email: {str(e)}")
         print(f"Failed to send email: {e}")
         return False
