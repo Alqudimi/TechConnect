@@ -196,9 +196,20 @@ body.rtl {
     direction: rtl;
 }
 
-/* Responsive adjustments for RTL */
+/* Responsive RTL adjustments - Fixed scoping */
 @media (max-width: 768px) {
     .rtl .nav-menu {
+        right: -100%;
+        left: auto;
+        text-align: right;
+    }
+    
+    .rtl .nav-menu.active {
+        right: 0;
+        left: auto;
+    }
+    
+    .rtl .nav-link {
         text-align: right;
     }
     
@@ -210,6 +221,12 @@ body.rtl {
         margin-right: 0;
         margin-left: 0;
         justify-content: center;
+    }
+    
+    .rtl .hamburger {
+        order: 0;
+        margin-left: auto;
+        margin-right: var(--space-4);
     }
 }
 
