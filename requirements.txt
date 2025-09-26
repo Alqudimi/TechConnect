@@ -9,3 +9,4 @@ python-multipart>=0.0.20
 sendgrid>=6.12.5
 sqlalchemy>=2.0.43
 uvicorn>=0.37.0
+bcrypt
