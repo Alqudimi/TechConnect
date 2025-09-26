@@ -18,7 +18,7 @@ def send_contact_email(
     smtp_email = os.environ.get('SMTP_EMAIL')
     smtp_password = os.environ.get('SMTP_PASSWORD')
     admin_email = os.environ.get('ADMIN_EMAIL', smtp_email)
-    
+    print(f'SMTP_EMAIL: {smtp_email}\nSMTP_PASSWORD: {smtp_password}\nADMIN_EMAIL: {admin_email}\nport:{smtp_port}\nserver:{smtp_server} ')
     if not smtp_email or not smtp_password:
         print("SMTP credentials not configured")
         return False
