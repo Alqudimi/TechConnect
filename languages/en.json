@@ -161,17 +161,17 @@
     "team_title": "Meet Our Team",
     "team_members": {
       "alex": {
-        "name": "Alex Thompson",
+        "name": "Abdulaziz Alqudimi ",
         "role": "Full Stack Developer",
         "description": "Specializes in React, Node.js, and cloud architecture with 8+ years of experience."
       },
       "sarah": {
-        "name": "Sarah Martinez",
+        "name": "Al Hakem",
         "role": "UI/UX Designer",
         "description": "Creates beautiful and intuitive user experiences with a focus on modern design principles."
       },
       "david": {
-        "name": "David Kim",
+        "name": "designer Meral",
         "role": "Mobile Developer",
         "description": "Expert in cross-platform mobile development using React Native and Flutter."
       },
